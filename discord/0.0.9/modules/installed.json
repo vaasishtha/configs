@@ -1,0 +1,25 @@
+{
+  "discord_desktop_core": {
+    "installedVersion": 8,
+    "updateVersion": 9,
+    "updateZipfile": "/home/paradox/.config/discord/0.0.9/modules/pending/discord_desktop_core-9.zip"
+  },
+  "discord_erlpack": {
+    "installedVersion": 2
+  },
+  "discord_spellcheck": {
+    "installedVersion": 2
+  },
+  "discord_utils": {
+    "installedVersion": 2
+  },
+  "discord_voice": {
+    "installedVersion": 13
+  },
+  "discord_game_utils": {
+    "installedVersion": 3
+  },
+  "discord_rpc": {
+    "installedVersion": 3
+  }
+}

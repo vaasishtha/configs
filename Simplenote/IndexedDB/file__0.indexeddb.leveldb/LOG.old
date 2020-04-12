@@ -1,0 +1,18 @@
+2020/04/04-23:32:08.186 605091 Reusing MANIFEST /home/paradox/.config/Simplenote/IndexedDB/file__0.indexeddb.leveldb/MANIFEST-000001
+2020/04/04-23:32:08.186 605091 Recovering log #196
+2020/04/04-23:32:08.186 605091 Reusing old log /home/paradox/.config/Simplenote/IndexedDB/file__0.indexeddb.leveldb/000196.log 
+2020/04/04-23:32:10.457 605280 Current memtable full; waiting...
+2020/04/04-23:32:10.458 605429 Level-0 table #201: started
+2020/04/04-23:32:10.535 605429 Level-0 table #201: 333 bytes OK
+2020/04/04-23:32:10.845 605429 Delete type=0 #196
+2020/04/04-23:32:10.846 605429 Level-0 table #203: started
+2020/04/04-23:32:10.846 605429 Level-0 table #203: 0 bytes OK
+2020/04/04-23:32:10.978 605429 Delete type=0 #200
+2020/04/04-23:32:10.978 605429 Manual compaction at level-0 from '\x00$\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00%\x00\x00\x00' @ 0 : 0; will stop at '\x00$\x00\x00\x05' @ 9510 : 1
+2020/04/04-23:32:10.978 605429 Compacting 1@0 + 1@1 files
+2020/04/04-23:32:11.055 605429 Generated table #204@0: 118 keys, 33661 bytes
+2020/04/04-23:32:11.055 605429 Compacted 1@0 + 1@1 files => 33661 bytes
+2020/04/04-23:32:11.177 605429 compacted to: files[ 0 1 1 0 0 0 0 ]
+2020/04/04-23:32:11.177 605429 Delete type=2 #198
+2020/04/04-23:32:11.177 605429 Delete type=2 #201
+2020/04/04-23:32:11.177 605429 Manual compaction at level-0 from '\x00$\x00\x00\x05' @ 9510 : 1 .. '\x00%\x00\x00\x00' @ 0 : 0; will stop at (end)

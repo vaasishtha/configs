@@ -1,0 +1,41 @@
+
+#Brightness Control
+XF86MonBrightness{Down,Up}
+	;xbacklight {-dec 10,-inc 10}
+
+#Audio Control
+XF86AudioMute
+	;amixer -q set Master toggle
+
+XF86Audio{Raise,Lower}Volume
+	;amixer -q set Master {5%+,5%-}
+
+#Music Player Control
+XF86AudioPlay
+	;mpc toggle
+
+XF86AudioNext
+	;mpc next
+
+XF86AudioPrev
+	;mpc prev
+
+#Browser shortcut
+alt + b
+	$HOME/bin/runBrowser
+
+#Screenshot (full screen or selective)
+alt + {s,x}
+	$HOME/bin/Screenshot {"full",""}
+
+#Pick an emoji and copy it to Clipboard
+alt + e
+	$HOME/bin/emojiSelector
+
+#Youtube Downloader
+alt + d
+	$HOME/bin/YTDownloader
+
+#Exit Menu
+super + l
+	$HOME/bin/exitOps

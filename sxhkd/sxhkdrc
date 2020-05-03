@@ -30,7 +30,7 @@ alt + {s,x}
 
 #Pick an emoji and copy it to Clipboard
 alt + e
-	$HOME/bin/emojiSelector
+	$HOME/bin/emojiMenu
 
 #Youtube Downloader
 alt + d

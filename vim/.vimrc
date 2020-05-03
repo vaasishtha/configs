@@ -1,32 +1,44 @@
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+call plug#begin('~/.vim/plugged')
+	Plug 'joshdick/onedark.vim'
+	Plug 'ap/vim-css-color'
+	Plug 'vim-airline/vim-airline'
+	Plug 'scrooloose/nerdtree'
+	Plug 'scrooloose/syntastic'
+call plug#end()            
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-	"alternatively, pass a path where Vundle should install plugins
-	"call vundle#begin('~/some/path/here')
-
-	Plugin 'VundleVim/Vundle.vim'
-	Plugin 'junegunn/fzf.vim'
-	Plugin 'vim-airline/vim-airline'
-	Plugin 'vim-airline/vim-airline-themes'
-	Plugin 'scrooloose/nerdtree'
-	Plugin 'scrooloose/syntastic'
-
-call vundle#end()            " required
-
-filetype plugin indent on    " required
+filetype plugin indent on   
+syntax on
+set autoread
+set wildmenu
+set noruler
 set nocompatible
 set number relativenumber
 set colorcolumn=110
-set encoding=utf-8
+hi ColorColumn ctermbg=grey
+set encoding=UTF-8
 set splitbelow splitright
-syntax on
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set smartcase
+set smartindent
+set spelllang=en_us
+set spell
+hi clear SpellBad
+hi SpellBad cterm=underline
+set hls is
+hi Search ctermfg=black ctermbg=grey
+set laststatus=2
+set cmdheight=1
+set cursorline
+
+colorscheme onedark
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -38,15 +50,15 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#formatter = 'default'
 
 "mappings
-	map <C-n> :NERDTreeToggle<CR>
+let mapleader=" "
 
-"Changing the split cursor movement bindings
-
-	map <C-h> <C-w>h
-	map <C-j> <C-w>j
-	map <C-k> <C-w>k
-	map <C-l> <C-w>l
-"Tab movement
-	"map <S-LEFT> gt
-	map <S-left> :tabprevious<CR>
-	map <S-right> :tabnext<CR>
+map <C-n> :NERDTreeToggle<CR>
+map <Leader><Space> :let @/=''<CR>
+map <Leader><left> :vertical resize -5<CR>
+map <Leader><right> :vertical resize +5<CR>
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <S-left> :tabprevious<CR>
+map <S-right> :tabnext<CR>

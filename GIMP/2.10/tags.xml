@@ -1444,6 +1444,21 @@
   <resource identifier="DejaVu Serif Semi-Condensed" checksum="(null)">
   </resource>
 
+  <resource identifier="Fira Code" checksum="(null)">
+  </resource>
+
+  <resource identifier="Fira Code Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="Fira Code Light" checksum="(null)">
+  </resource>
+
+  <resource identifier="Fira Code Medium" checksum="(null)">
+  </resource>
+
+  <resource identifier="Fira Code weight=450" checksum="(null)">
+  </resource>
+
   <resource identifier="Gargi-1.2b Medium Italic" checksum="(null)">
   </resource>
 
@@ -1451,6 +1466,18 @@
   </resource>
 
   <resource identifier="GurbaniBoliLite Thin Ultra-Condensed" checksum="(null)">
+  </resource>
+
+  <resource identifier="Hack" checksum="(null)">
+  </resource>
+
+  <resource identifier="Hack Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="Hack Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="Hack Italic" checksum="(null)">
   </resource>
 
   <resource identifier="JoyPixels" checksum="(null)">

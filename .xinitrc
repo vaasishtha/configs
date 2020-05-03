@@ -4,7 +4,7 @@ export PATH="${PATH}:$HOME/bin"
 export SHELL="/usr/bin/zsh"
 export EDITOR="/usr/bin/vim"
 export TERM="st"
-export BROWSER="/usr/bin/firefox-developer-edition"
+export BROWSER="/usr/bin/firefox"
 export READER="/usr/bin/zathura"
 # export FILE="/usr/bin/nemo"
 export FILE="/usr/bin/ranger"
@@ -12,6 +12,7 @@ export FILE="/usr/bin/ranger"
 # Configs
 export ZDOTDIR="$HOME/.config/zsh/"
 export LESSHISTFILE="-"
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview "bat" --preview-window :70%'
 
 # CCACHE vars
 export USE_CCACHE=1
@@ -33,7 +34,8 @@ systemctl --user import-environment DISPLAY &
 
 /usr/bin/picom -b &
 
-$HOME/bin/DWMStatus &
+$HOME/bin/Status&
 
-exec dwm
-
+while :; do
+	ssh-agent dwm
+done

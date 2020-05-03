@@ -1,31 +1,14 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 local ZSH_CONF=$HOME/.config/zsh               				# Define the place I store all my zsh config stuff
 local ZSH_CACHE=$ZSH_CONF/cache                				# for storing files like history and zcompdump
 local LOCAL_ZSHRC=$ZSH_CONF/.zshrc	     				# Allow the local machine to have its own overriding zshrc if it wants it
 local ZSH_COMPDUMP="$ZSH_CONF/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"  #where to store autocomplete data
 
-# CASE_SENSITIVE="true"
-# HYPHEN_INSENSITIVE="true"
-# DISABLE_AUTO_UPDATE="true"
-# DISABLE_UPDATE_PROMPT="true"
-export UPDATE_ZSH_DAYS=13
-# DISABLE_MAGIC_FUNCTIONS=true
-# DISABLE_LS_COLORS="true"
-# DISABLE_AUTO_TITLE="true"
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# PLUGINS TO LOAD
-# Example format: plugins=(rails git textmate ruby lighthouse)
+# PLUGINS
 # Add wisely, as too many plugins slow down shell startup.
+ 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH_CONF/git-prompt.sh
-
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bold,underline"
 
@@ -33,32 +16,41 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bold,underline"
 
 export LANG=en_IN.UTF-8
 export KEYTIMEOUT=1
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM="auto"
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 HISTFILE=$ZSH_CONF/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt autocd extendedglob nomatch notify appendhistory
+
+setopt autocd 
+setopt extendedglob 
+setopt nomatch 
+setopt notify 
+setopt appendhistory
+setopt prompt_subst
+setopt complete_in_word                                	 # Allow completion from within a word/phrase
+setopt always_to_end                                   	 # When completing from the middle of a word, move cursor to end of word
+setopt menu_complete                                   	 # When using auto-complete, put the first option on the line immediately
+setopt complete_aliases                                	 # Turn on completion for aliases as well
+setopt list_rows_first                                 	 # Cycle through menus horizontally instead of vertically
 
 autoload -Uz compinit                                    # Autoload auto completion
 compinit -i -d "${ZSH_COMPDUMP}"                         # Init auto completion; tell where to store autocomplete dump
-zstyle ':completion:*' menu select                       # Have the menu highlight as we cycle through options
+zstyle ':completion:*' menu select               # Have the menu highlight as we cycle through options
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'      # Case-insensitive (uppercase from lowercase) completion
 
 autoload -Uz edit-command-line 
 zle -N edit-command-line
 
-#autoload -Uz colors && colors
-
-setopt prompt_subst
-setopt COMPLETE_IN_WORD                                 # Allow completion from within a word/phrase
-setopt ALWAYS_TO_END                                    # When completing from the middle of a word, move cursor to end of word
-setopt MENU_COMPLETE                                    # When using auto-complete, put the first option on the line immediately
-setopt COMPLETE_ALIASES                                 # Turn on completion for aliases as well
-setopt LIST_ROWS_FIRST                                  # Cycle through menus horizontally instead of vertically
+autoload -Uz colors && colors
 
 # ALIASES
 
-alias ls="ls -h --color=auto"
+alias ls="ls -h --color=auto --group-directories-first"
 alias lsa="ls -a"
 alias ll="ls -l"
 alias la="ls -la"
@@ -67,17 +59,22 @@ alias grep="grep -n --color=auto"
 alias diff="diff --color=auto"
 alias mv="mv -i"
 alias rm="rm -i"
+alias df="df -h"
+alias free="free -h"
 alias gs="git status"
+alias bat="bat -A --color always"
+alias ncmpcpp="ncmpcpp -c $XDG_CONFIG_HOME/.ncmpcpp/config"
 
 # Prompt Theming
-# Options: ➜  √ λ
+# Options: ➜ √ λ ✔ ✘ ❯
 # %n=Username, %m=Machinename, %C=Trimmed Dir Name
 # %c=DirName, 
 # %F{..}=Foreground, %B/b=Bold Start/Stop
 # %f=reset_color
-PS1='%(?:%B%F{green}➜ :%B%F{red}➜ )%f %F{cyan}%c %f%b ' #$(__git_ps1 "(%s)")'
-#PS1='[%n@%m %c$(__git_ps1 " (%s)")]\$ '
-#precmd () { __git_ps1 "%n" ":%~$ " "|%s" }
+# PS1='%B%F{cyan}%c %f%b%F{magenta}$(__git_ps1 " %s ")%f%B%(?:%F{green}:%F{red})➜ %f%b'
+PROMPT='%B%F{cyan} %c %f%(?:%F{green}:%F{red})➜ %f%b'
+RPROMPT='%F{magenta}$(__git_ps1 "  %s")%f'
+# precmd () { __git_ps1 "%n" ":%~$ " "|%s" }
 
 # KEY BINDINGS
 bindkey "^?" 		backward-delete-char	#[BaskSpace]
@@ -96,3 +93,4 @@ bindkey "^[[1;5D" 	backward-word	        #[Ctrl-LeftArrow] - move backward one w
 # MISC
 
 clear && neofetch | lolcat
+

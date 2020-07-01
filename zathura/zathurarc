@@ -4,3 +4,6 @@ set selection-clipboard clipboard
 #display the file name only on Title
 set statusbar-basename true
 
+ map <C-=> zoom in
+ map <C--> zoom out
+ map i recolor

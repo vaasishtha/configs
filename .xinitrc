@@ -12,11 +12,9 @@ export FILE="/usr/bin/ranger"
 # Configs
 export ZDOTDIR="$HOME/.config/zsh/"
 export LESSHISTFILE="-"
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview "bat" --preview-window :70%'
-
-# CCACHE vars
 export USE_CCACHE=1
 export CCACHE_COMPRESS=1
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview "bat" --preview-window :70%'
 
 systemctl --user import-environment DISPLAY &
 
@@ -24,9 +22,7 @@ systemctl --user import-environment DISPLAY &
 
 [ -d "$HOME/androidBuilds/bin" ] && PATH="${PATH}:$HOME/androidBuilds/bin" &
 
-/usr/bin/feh --no-fehbg --bg-scale $HOME/Media/Pictures/Walls/netero.jpg &
-
-/usr/bin/sxhkd &
+[ -e "$HOME/Media/Pictures/wall" ] && /usr/bin/feh --no-fehbg --bg-scale "$HOME/Media/Pictures/wall" &
 
 /usr/bin/dunst &
 
@@ -34,7 +30,9 @@ systemctl --user import-environment DISPLAY &
 
 /usr/bin/picom -b &
 
-$HOME/bin/Status&
+$HOME/bin/weather &
+
+$HOME/bin/Status &
 
 while :; do
 	ssh-agent dwm

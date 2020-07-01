@@ -1,16 +1,3 @@
-##############################################################################
-## This is the example configuration file. Copy it to $HOME/.ncmpcpp/config ##
-## or $XDG_CONFIG_HOME/ncmpcpp/config and set up your preferences.          ##
-##############################################################################
-#
-##### directories ######
-##
-## Directory for storing ncmpcpp related files.  Changing it is useful if you
-## want to store everything somewhere else and provide command line setting for
-## alternative location to config file which defines that while launching
-## ncmpcpp.
-##
-#
 ncmpcpp_directory = ~/.config/.ncmpcpp
 #
 ##
@@ -22,101 +9,47 @@ ncmpcpp_directory = ~/.config/.ncmpcpp
 #
 ##### connection settings #####
 #
+mpd_music_dir = $HOME/Media/Music
 mpd_host = 127.0.0.1
-#
 mpd_port = 6600
-#
-#mpd_connection_timeout = 5
-#
-## Needed for tag editor and file operations to work.
-##
-mpd_music_dir = ~/Media/Music
-#
-#mpd_crossfade_time = 5
+# mpd_connection_timeout = 5
+# mpd_crossfade_time = 5
 #
 ##### music visualizer #####
-##
-## Note: In order to make music visualizer work you'll need to use mpd fifo
-## output, whose format parameter has to be set to 44100:16:1 for mono
-## visualization or 44100:16:2 for stereo visualization. example configuration
-## (it has to be put into mpd.conf):
-##
+## 44100:16:1 for mono visualization. 
+## 44100:16:2 for stereo visualization. 
 audio_output {
         type            "fifo"
         name            "visualizer feed"
         path            "/tmp/mpd.fifo"
         format          "44100:16:2"
 }
+
 visualizer_fifo_path = /tmp/mpd.fifo
-#
-##
-## note: below parameter is needed for ncmpcpp to determine which output
-## provides data for visualizer and thus allow syncing between visualization and
-## sound as currently there are some problems with it.
-##
-#
 visualizer_output_name = Visualizer feed
-#
-##
-## If you set format to 44100:16:2, make it 'yes'.
-##
 visualizer_in_stereo = yes
-#
-##
-## Note: Below parameter defines how often ncmpcpp has to "synchronize"
-## visualizer and audio outputs.  30 seconds is optimal value, but if you
-## experience synchronization problems, set it to lower value.  Keep in mind
-## that sane values start with >=10.
-##
-#
 visualizer_sync_interval = 30
-#
-##
-## Note: To enable spectrum frequency visualization you need to compile ncmpcpp
-## with fftw3 support.
-##
-#
-## Available values: spectrum, wave, wave_filled, ellipse.
-##
-visualizer_type = spectrum
-#
+
+visualizer_type = spectrum	
+#A vailable values: spectrum, wave, wave_filled, ellipse.
 #visualizer_look = ●▮
-visualizer_look = ▮▮
+visualizer_look = "▉▉"
+# visualizer_look = "▞▋"
+#visualizer_look = "▍▍"
+#visualizer_look = "▮▮"
+#visualizer_look = "▋▋"
 #visualizer_look = "+|"
 #
+
 visualizer_color = blue, cyan, green, yellow, magenta, red
-#
+
 ## Alternative subset of 256 colors for terminals that support it.
-##
 #visualizer_color = 41, 83, 119, 155, 185, 215, 209, 203, 197, 161
-#
-##### system encoding #####
-##
-## ncmpcpp should detect your charset encoding but if it failed to do so, you
-## can specify charset encoding you are using here.
-##
-## Note: You can see whether your ncmpcpp build supports charset detection by
-## checking output of `ncmpcpp --version`.
-##
-## Note: Since MPD uses UTF-8 by default, setting this option makes sense only
-## if your encoding is different.
-##
-#
-#system_encoding = ""
-#
-##### delays #####
-#
-## Time of inactivity (in seconds) after playlist highlighting will be disabled
-## (0 = always on).
-##
-#playlist_disable_highlight_delay = 5
-#
-## Defines how long messages are supposed to be visible.
-##
-#message_delay_time = 5
-#
-##### song format #####
-##
+
+playlist_disable_highlight_delay = 10
+message_delay_time = 10
+mouse_support = "yes"
+mouse_list_scroll_whole_page = "yes"
 ## For a song format you can use:
 ##
 ## %l - length
@@ -183,8 +116,10 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 ##
 #
 #song_list_format = {%a - }{%t}|{$8%f$9}$R{$3(%l)$9}
+song_list_format = {%t $R$7    $2%a$8}|{%f $R$2   %l$8} $R$8│  
 #
 #song_status_format = {{%a{ "%b"{ (%y)}} - }{%t}}|{%f}
+song_status_format = {$b$7 $2%a $3〃 $5%t $3〃 $6%b}|{$b$7 $6%f} 
 #
 #song_library_format = {%n - }{%t}|{%f}
 #
@@ -193,6 +128,7 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 #alternative_header_second_line_format = {{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}
 #
 #current_item_prefix = $(yellow)$r
+current_item_prefix = "$/b$3"
 #
 #current_item_suffix = $/r$(end)
 #
@@ -200,10 +136,8 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 #
 #current_item_inactive_column_suffix = $/r$(end)
 #
-#now_playing_prefix = $b
-#
-#now_playing_suffix = $/b
-#
+now_playing_prefix = " $b$7"
+now_playing_suffix = $/b
 #browser_playlist_prefix = "$2playlist$9 "
 #
 #selected_item_prefix = $6
@@ -263,72 +197,38 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 ##
 #
 #song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
+song_columns_list_format = (6f)[cyan]{NE} (20)[red]{a} (45)[]{t|f:Title} (15)[magenta]{b} (4f)[red]{lr} 
 #
 ##### various settings #####
-#
-##
-## Note: Custom command that will be executed each time song changes. Useful for
-## notifications etc.
-##
-execute_on_song_change = "notify-send 'Now Playing' '$(mpc --format '%title% \n%artist% - %album%' current)'"
-#
-##
-## Note: Custom command that will be executed each time player state
-## changes. The environment variable MPD_PLAYER_STATE is set to the current
-## state (either unknown, play, pause, or stop) for its duration.
-##
-#
-#execute_on_player_state_change = ""
-#
-#playlist_show_mpd_host = no
-#
-#playlist_show_remaining_time = no
-#
-#playlist_shorten_total_times = no
-#
-#playlist_separate_albums = no
-#
-##
-## Note: Possible display modes: classic, columns.
-##
-#playlist_display_mode = columns
-#
-#browser_display_mode = classic
-#
-#search_engine_display_mode = classic
-#
-#playlist_editor_display_mode = classic
-#
-#discard_colors_if_item_is_selected = yes
-#
-#show_duplicate_tags = yes
-#
-#incremental_seeking = yes
-#
-#seek_time = 1
-#
-#volume_change_step = 2
-#
-#autocenter_mode = no
-#
-#centered_cursor = no
-#
-##
-## Note: You can specify third character which will be used to build 'empty'
-## part of progressbar.
-##
-#progressbar_look = =>
-#
-## Available values: database, playlist.
-##
-#default_place_to_search_in = database
-#
-## Available values: classic, alternative.
-##
-#user_interface = classic
-#
+# execute_on_song_change = "dunstify -u normal -r 3002 -t 3000 -a " 契 Now Playing" $(mpc current)"
+# execute_on_player_state_change = ""
+# playlist_show_mpd_host = no
+# playlist_show_remaining_time = no
+# playlist_shorten_total_times = no
+# playlist_separate_albums = no
+playlist_display_mode = columns
+# browser_display_mode = classic
+# search_engine_display_mode = classic
+# playlist_editor_display_mode = classic
+# discard_colors_if_item_is_selected = yes
+# show_duplicate_tags = yes
+# incremental_seeking = yes
+# seek_time = 1
+# volume_change_step = 2
+autocenter_mode = yes
+centered_cursor = yes
+
+progressbar_look = "━━━"
+# progressbar_look = =>
+# progressbar_look = "─⊙ "
+# progressbar_look = "─╼"
+# progressbar_look = "▃▃▃"
+progressbar_elapsed_color = 7
+progressbar_color = "black"  
+
+# default_place_to_search_in = database
+user_interface = alternative
 #data_fetching_delay = yes
-#
 ## Available values: artist, album_artist, date, genre, composer, performer.
 ##
 #media_library_primary_tag = artist
@@ -343,7 +243,7 @@ execute_on_song_change = "notify-send 'Now Playing' '$(mpc --format '%title% \n%
 #
 #header_visibility = yes
 #
-#statusbar_visibility = yes
+statusbar_visibility = yes
 #
 #titles_visibility = yes
 #
@@ -393,15 +293,9 @@ execute_on_song_change = "notify-send 'Now Playing' '$(mpc --format '%title% \n%
 ##
 ## Note: You can define startup screen by choosing screen from the list above.
 ##
-#startup_screen = playlist
-#
-##
-## Note: You can define startup slave screen by choosing screen from the list
-## above or an empty value for no slave screen.
-##
-#startup_slave_screen = ""
-#
-#startup_slave_screen_focus = no
+startup_screen = playlist
+# startup_slave_screen = "visualizer"
+startup_slave_screen_focus = no
 #
 ##
 ## Default width of locked screen (in %).  Acceptable values are from 20 to 80.
@@ -522,15 +416,15 @@ execute_on_song_change = "notify-send 'Now Playing' '$(mpc --format '%title% \n%
 #
 #main_window_color = yellow
 #
-#color1 = white
+color1 = white
 #
-#color2 = green
+color2 = blue
 #
 #progressbar_color = black:b
 #
 #progressbar_elapsed_color = green:b
 #
-#statusbar_color = default
+statusbar_color = white
 #
 #statusbar_time_color = default:b
 #

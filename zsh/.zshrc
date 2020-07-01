@@ -23,8 +23,8 @@ export GIT_PS1_SHOWUPSTREAM="auto"
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 HISTFILE=$ZSH_CONF/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 
 setopt autocd 
 setopt extendedglob 

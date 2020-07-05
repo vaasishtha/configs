@@ -12,6 +12,7 @@ export FILE="/usr/bin/ranger"
 # Configs
 export ZDOTDIR="$HOME/.config/zsh/"
 export LESSHISTFILE="-"
+export WEECHAT_HOME="$HOME/.config/.weechat"
 export USE_CCACHE=1
 export CCACHE_COMPRESS=1
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview "bat" --preview-window :70%'

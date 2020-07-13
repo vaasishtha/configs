@@ -1,35 +1,36 @@
 #!/usr/bin/env sh
 
 export PATH="${PATH}:$HOME/bin"
-export SHELL="/usr/bin/zsh"
-export EDITOR="/usr/bin/vim"
+export SHELL="zsh"
+export EDITOR="vim"
 export TERM="st"
-export BROWSER="/usr/bin/firefox"
-export READER="/usr/bin/zathura"
-# export FILE="/usr/bin/nemo"
-export FILE="/usr/bin/ranger"
+export BROWSER="firefox"
+export READER="zathura"
+export FILE="ranger"
+# export FILE="nemo"
 
 # Configs
-export ZDOTDIR="$HOME/.config/zsh/"
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export WEECHAT_HOME="$XDG_CONFIG_HOME/.weechat"
 export LESSHISTFILE="-"
-export WEECHAT_HOME="$HOME/.config/.weechat"
 export USE_CCACHE=1
 export CCACHE_COMPRESS=1
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview "bat" --preview-window :70%'
 
 systemctl --user import-environment DISPLAY &
 
-[ -d "$HOME/platform-tools" ] && PATH="${PATH}:$HOME/platform-tools" &
+[ -d "$HOME/platform-tools" ] && export PATH="${PATH}:$HOME/platform-tools" &
+[ -d "$HOME/androidBuilds/bin" ] && export PATH="${PATH}:$HOME/androidBuilds/bin" &
+[ -e "$HOME/Library/Pictures/wall" ] && /usr/bin/feh --no-fehbg --bg-scale "$HOME/Library/Pictures/wall" &
 
-[ -d "$HOME/androidBuilds/bin" ] && PATH="${PATH}:$HOME/androidBuilds/bin" &
+dunst &
 
-[ -e "$HOME/Media/Pictures/wall" ] && /usr/bin/feh --no-fehbg --bg-scale "$HOME/Media/Pictures/wall" &
+pgrep mpd > /dev/null || mpd & 
 
-/usr/bin/dunst &
-
-[ ! -s ~/.config/mpd/pid ] && /usr/bin/mpd & 
-
-/usr/bin/picom -b &
+picom -b &
 
 $HOME/bin/weather &
 

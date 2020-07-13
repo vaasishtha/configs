@@ -71,22 +71,25 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-"mappings
+" mappings
 let mapleader=" "
 
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <Leader><Space> :let @/=''<CR>
 nnoremap <Leader><left> :vertical resize -5<CR>
 nnoremap <Leader><right> :vertical resize +5<CR>
-"Split Navigation
+" Split Navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-"Tab Navigation
+" Tab Navigation
 nnoremap <S-l> :tabprevious<CR>
 nnoremap <S-h> :tabnext<CR>
-"Buffer Navigation
+" Buffer Navigation
 nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>h :bprev<CR>
+" Move Lines
+nnoremap <S-j> :move .-2<CR>
+nnoremap <S-k> :move .+1<CR>
 

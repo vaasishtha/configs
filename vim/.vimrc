@@ -2,37 +2,46 @@ call plug#begin('~/.vim/plugged')
 	Plug 'joshdick/onedark.vim'
 	Plug 'ap/vim-css-color'
 	Plug 'scrooloose/nerdtree'
-	Plug 'scrooloose/syntastic'
+	Plug 'vim-syntastic/syntastic'
 call plug#end()            
 
-filetype plugin indent on   
+filetype plugin indent on
 syntax on
 set autoread
+set clipboard+=unnamedplus
+set mouse=a
+set noshowmode
 set wildmenu
 "set ruler rulerformat=%15(%c%V\ %p%%%)
 set number relativenumber
 set colorcolumn=110
-highlight ColorColumn ctermbg=grey
 set encoding=UTF-8
 set splitright splitbelow 
 set tabstop=4 softtabstop=4 shiftwidth=4
 set smartcase
 set autoindent
-set spelllang=en
-set spell
-highlight clear SpellBad
-highlight SpellBad cterm=underline
+set spell spelllang=en
 set hlsearch is
-highlight Search ctermfg=black ctermbg=grey
 set laststatus=2
 set cmdheight=1
 set cursorline
 set backspace=indent,eol,start
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set list listchars=tab:»\ ,eol:¬,extends:❯,precedes:❮
+set lazyredraw
 
 runtime macros/matchit.vim
 
+"ColorScheme 
+let g:onedark_hide_endofbuffer=1
+let g:onedark_terminal_italics=1
+let g:onedark_termcolors=16
+
 colorscheme onedark
+
+"highlight Search ctermfg=black ctermbg=grey
+"highlight ColorColumn ctermbg=grey
+highlight clear SpellBad
+highlight SpellBad cterm=underline
 
 let g:currentmode={
        \ 'n'  : 'Normal ',
@@ -49,7 +58,7 @@ set statusline=
 set statusline+=%02n\ ❯
 set statusline+=\ %{toupper(g:currentmode[mode()])}❯
 set statusline+=\ %t								"tail of the filename
-set statusline+=%{&modified?'\ [+]':''}\ 				"modified flag
+set statusline+=%{&modified?'\ [+]':''}\ 			"modified flag
 set statusline+=%{&readonly?'\ [RO]\ ':''}			"read only flag
 set statusline+=%<
 set statusline+=%=									"left/right separator
@@ -63,15 +72,15 @@ set statusline+=\ %#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" mappings
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+"Mappings
 let mapleader=" "
 
 nnoremap <C-n> :NERDTreeToggle<CR>
@@ -90,6 +99,6 @@ nnoremap <S-h> :tabnext<CR>
 nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>h :bprev<CR>
 " Move Lines
-nnoremap <S-j> :move .-2<CR>
-nnoremap <S-k> :move .+1<CR>
+nnoremap <S-k> :move .-2<CR>
+nnoremap <S-j> :move .+1<CR>
 

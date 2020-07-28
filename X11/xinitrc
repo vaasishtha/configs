@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+systemctl --user import-environment DISPLAY &
+
+[ -e "$HOME/Library/Pictures/wall" ] && /usr/bin/feh --no-fehbg --bg-scale "$HOME/Library/Pictures/wall" &
+
+dunst &
+
+pgrep mpd > /dev/null || mpd & 
+
+picom -b &
+
+$HOME/bin/weather &
+
+$HOME/bin/Status &
+
+while :; do
+	ssh-agent dwm
+done

@@ -1,7 +1,7 @@
-local ZSH_CONF=$HOME/.config/zsh               				# Define the place I store all my zsh config stuff
-local ZSH_CACHE=$ZSH_CONF/cache                				# for storing files like history and zcompdump
-local LOCAL_ZSHRC=$ZSH_CONF/.zshrc							# Allow the local machine to have its own overriding zshrc if it wants it
-local ZSH_COMPDUMP="$ZSH_CONF/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"  #where to store autocomplete data
+local ZSH_CONF=$XDG_CONFIG_HOME/zsh									# Define the place I store all my zsh config stuff
+local ZSH_CACHE=$XDG_CACHE_HOME/zsh/cache							# for storing files like history and zcompdump
+local LOCAL_ZSHRC=$ZSH_CONF/.zshrc									# Allow the local machine to have its own overriding zshrc if it wants it
+local ZSH_COMPDUMP="$ZSH_CACHE/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"  #where to store autocomplete data
 
 # PLUGINS
 # Add wisely, as too many plugins slow down shell startup.
@@ -20,7 +20,7 @@ export GIT_PS1_SHOWUPSTREAM="auto"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,underline"
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-HISTFILE=$ZSH_CONF/.histfile
+HISTFILE=$ZSH_CACHE/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
@@ -30,7 +30,8 @@ setopt nomatch
 setopt notify 
 setopt appendhistory
 setopt prompt_subst
-setopt complete_in_word                             # Allow completion from within a word/phrase
+setopt hist_save_no_dups
+setopt complete_in_word								# Allow completion from within a word/phrase
 setopt always_to_end								# When completing from the middle of a word, move cursor to end of word
 setopt menu_complete                                # When using auto-complete, put the first option on the line immediately
 setopt complete_aliases								# Turn on completion for aliases as well
@@ -51,6 +52,8 @@ autoload -Uz colors && colors
 
 # ALIASES
 
+alias bash="bash --init-file $XDG_CONFIG_HOME/bash/.bashrc"
+alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc"
 alias ls="ls -Fh --color=auto --group-directories-first"
 alias lsa="ls -a"
 alias lo="ls -o"
@@ -63,6 +66,7 @@ alias rm="rm -i"
 alias df="df -h"
 alias free="free -h"
 alias gs="git status"
+alias gg="git log --graph --oneline --decorate"
 alias bat="bat -A --color always"
 alias ncmpcpp="ncmpcpp -c $XDG_CONFIG_HOME/.ncmpcpp/config"
 

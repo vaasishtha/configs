@@ -26,6 +26,7 @@ gettext
 gimp
 glances
 gnome-calculator
+gnu-netcat
 gpick
 gtop
 hexchat
@@ -61,7 +62,6 @@ nmap
 obs-studio
 pamixer
 patchelf
-picom
 pkgconf
 powerline
 pulsemixer
@@ -69,7 +69,9 @@ python-pyalsa
 qemu
 ranger
 redshift
+reflector
 retroarch
+screen
 scrot
 sxiv
 sysbench

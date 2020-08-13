@@ -54,6 +54,7 @@ autoload -Uz colors && colors
 
 alias bash="bash --init-file $XDG_CONFIG_HOME/bash/.bashrc"
 alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc"
+alias kbc="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\\n\", \$5, \$8 }'"
 alias ls="ls -Fh --color=auto --group-directories-first"
 alias lsa="ls -a"
 alias lo="ls -o"
@@ -68,7 +69,7 @@ alias free="free -h"
 alias gs="git status"
 alias gg="git log --graph --oneline --decorate"
 alias bat="bat -A --color always"
-alias ncmpcpp="ncmpcpp -c $XDG_CONFIG_HOME/.ncmpcpp/config"
+alias reflect="reflector --country 'India' --latest 10 --age 24 --sort rate --save /etc/pacman.d/mirrorlist"
 
 # Prompt Theming
 # Options: ➜ √ λ ✔ ✘ ❯ ❮
@@ -77,7 +78,7 @@ alias ncmpcpp="ncmpcpp -c $XDG_CONFIG_HOME/.ncmpcpp/config"
 # %F{..}=Foreground, %B/b=Bold Start/Stop
 # %f=reset_color
 # PS1='%B%F{cyan}%c %f%b%F{magenta}$(__git_ps1 " %s ")%f%B%(?:%F{green}:%F{red})➜ %f%b'
-PROMPT='%B%F{cyan}%c %f%(?:%F{green}:%F{red})%b❯ %f'
+PROMPT=' %B%F{cyan}%c %f%(?:%F{green}:%F{red})%b❯ %f'
 RPROMPT='%F{magenta}$(__git_ps1 "  %s")%f'
 # precmd () { __git_ps1 "%n" ":%~$ " "|%s" }
 
@@ -97,5 +98,5 @@ bindkey "^[[1;5D" 	backward-word	        #[Ctrl-LeftArrow] - move backward one w
 
 # MISC
 
-clear && neofetch | lolcat
+clear && neofetch 
 

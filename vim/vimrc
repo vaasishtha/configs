@@ -9,7 +9,7 @@ call plug#end()
 filetype plugin indent on
 syntax on
 set autoread
-set clipboard+=unnamedplus
+set clipboard=unnamedplus
 set mouse=a
 set noshowmode
 set wildmenu
@@ -27,52 +27,52 @@ set laststatus=2
 set cmdheight=1
 set cursorline
 set backspace=indent,eol,start
-set list listchars=tab:»\ ,eol:¬,extends:❯,precedes:❮
 set lazyredraw
-"set undodir=$XDG_DATA_HOME/vim/undo
-"set directory=$XDG_DATA_HOME/vim/swap
-"set backupdir=$XDG_DATA_HOME/vim/backup
-"set viewdir=$XDG_DATA_HOME/vim/view
+"set list listchars=tab:»\ ,eol:¬,extends:❯,precedes:❮
+set directory=$XDG_CACHE_HOME/vim/swap,~/.vim,/tmp
+set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
+set undodir=$XDG_CACHE_HOME/vim/undo,~/,/tmp
 set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
-"set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+"set runtimepath=$XDG_CONFIG_HOME/vim/,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNIME
 
 runtime macros/matchit.vim
 
 "ColorScheme 
+let &t_8f = "[38;2;%lu;%lu;%lum"
+let &t_8b = "[48;2;%lu;%lu;%lum"
+set termguicolors
 function! Hilites() abort
-	"highlight StatusLine cterm=bold,italic ctermfg=257 ctermbg=8
-	highlight StatusLine cterm=bold ctermfg=257 ctermbg=8
-	highlight Search term=reverse ctermfg=0 ctermbg=3
-	highlight IncSearch ctermfg=0 ctermbg=3
-	highlight LineNr term=underline cterm=bold ctermfg=257 ctermbg=8
-	highlight LineNrAbove term=underline ctermfg=7
-	highlight LineNrBelow term=underline ctermfg=7
-	highlight ColorColumn term=reverse ctermbg=8
-	highlight SpellBad term=NONE cterm=underline
-
+	highlight StatusLine cterm=bold ctermfg=145 ctermbg=236
+	highlight CursorLine term=underline ctermbg=236
+	highlight CursorLineNr cterm=bold ctermbg=236
+	highlight ColorColumn term=reverse ctermbg=236
+	highlight Search term=reverse ctermfg=235 ctermbg=180
+	highlight IncSearch term=reverse ctermfg=180 ctermbg=59
+	highlight SpellBad term=reverse cterm=underline ctermfg=204
+	highlight EndOfBuffer ctermfg=235
 endfunction
 
 augroup MyColors
 	autocmd!
 	autocmd ColorScheme * call Hilites()
 augroup END
+"autocmd! BufNewFile,BufRead call Hilites()
 
 let g:onedark_hide_endofbuffer=1
 let g:onedark_terminal_italics=1
-let g:onedark_termcolors=16
 
 colorscheme onedark
 
 let g:currentmode={
-       \ 'n'  : 'Normal ',
-       \ 'v'  : 'Visual ',
-       \ 'V'  : 'V·Line ',
-       \ ''   : 'V·Block ',
-       \ 'i'  : 'Insert ',
-       \ 'R'  : 'Replace ',
-	   \ 'Rv' : 'V·Replace ',
-       \ 'c'  : 'Command ',
-       \}
+			\ 'n'  : 'Normal ',
+			\ 'v'  : 'Visual ',
+			\'V'  : 'V·Line ',
+			\ ''   : 'V·Block ',
+			\ 'i'  : 'Insert ',
+			\ 'R'  : 'Replace ',
+			\ 'Rv' : 'V·Replace ',
+			\ 'c'  : 'Command ',
+			\}
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -104,8 +104,11 @@ set statusline+=%*
 let mapleader=" "
 
 nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <Leader><Space> :let @/=''<CR>
+nnoremap <C-z> :SyntasticToggleMode<CR>
+
+nnoremap <C-b> :g//#<Left><Left>
 nnoremap <F10> :set invpaste<CR>
+nnoremap <Leader><Space> :let @/=''<CR>
 nnoremap <Leader><left> :vertical resize -5<CR>
 nnoremap <Leader><right> :vertical resize +5<CR>
 " Split Navigation

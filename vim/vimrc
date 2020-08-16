@@ -64,14 +64,14 @@ let g:onedark_terminal_italics=1
 colorscheme onedark
 
 let g:currentmode={
-			\ 'n'  : 'Normal ',
-			\ 'v'  : 'Visual ',
+			\'n'  : 'Normal ',
+			\'v'  : 'Visual ',
 			\'V'  : 'V·Line ',
-			\ ''   : 'V·Block ',
-			\ 'i'  : 'Insert ',
-			\ 'R'  : 'Replace ',
-			\ 'Rv' : 'V·Replace ',
-			\ 'c'  : 'Command ',
+			\'' : 'V·Block ',
+			\'i'  : 'Insert ',
+			\'R'  : 'Replace ',
+			\'Rv' : 'V·Replace ',
+			\'c'  : 'Command ',
 			\}
 
 let g:syntastic_always_populate_loc_list = 1
@@ -104,7 +104,7 @@ set statusline+=%*
 let mapleader=" "
 
 nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <C-z> :SyntasticToggleMode<CR>
+nnoremap <S-s> :SyntasticToggleMode<CR>
 
 nnoremap <C-b> :g//#<Left><Left>
 nnoremap <F10> :set invpaste<CR>
@@ -125,4 +125,6 @@ nnoremap <Leader>h :bprev<CR>
 " Move Lines
 nnoremap <S-k> :move .-2<CR>
 nnoremap <S-j> :move .+1<CR>
+vnoremap <S-k> :move '<-2<CR>gv=gv
+vnoremap <S-j> :move '>+1<CR>gv=gv
 

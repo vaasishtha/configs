@@ -17,9 +17,12 @@
 #define base0E #56b6c2
 #define base0F #d8dee9
 
-#define bg #0c0c0d 
-#define fg #ffffff
-#define sfg #8AB4F8
+! #define bg #0c0c0d 
+#define bg #242424
+#define fg #fefefe
+! #define sfg #8AB4F8
+#define sbg #3c4657
+#define sfg #fefefe
 #define border #233c43
 
 ! Common
@@ -64,7 +67,7 @@
 dwm.normBG: bg
 dwm.normFG: fg
 dwm.normBorder: border
-dwm.selBG: bg
+dwm.selBG: sbg
 dwm.selFG: sfg
 dwm.selBorder: border
 ! dwm.borderpx: 0

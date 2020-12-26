@@ -103,7 +103,7 @@ set statusline+=%*
 "Mappings
 let mapleader=" "
 
-nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <S-n> :NERDTreeToggle<CR>
 nnoremap <S-s> :SyntasticToggleMode<CR>
 
 nnoremap <C-b> :g//#<Left><Left>

@@ -62,14 +62,15 @@ alias la="ls -ao"
 alias l="ls -aoh"
 alias grep="grep -n --color=auto"
 alias diff="diff --color=auto"
-alias mv="mv -i"
-alias rm="rm -i"
+alias mv="mv -iv"
+alias cp="cp -iv"
+alias rm="rm -v"
 alias df="df -h"
 alias free="free -h"
 alias gs="git status"
 alias gg="git log --graph --oneline --decorate"
 alias bat="bat -A --color always"
-alias reflect="reflector --country 'India' --latest 10 --age 24 --sort rate --save /etc/pacman.d/mirrorlist"
+alias reflect="sudo reflector --country 'India' --latest 10 --age 24 --sort rate --save /etc/pacman.d/mirrorlist"
 
 # Prompt Theming
 # Options: ➜ √ λ ✔ ✘ ❯ ❮

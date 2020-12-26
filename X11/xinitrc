@@ -1,8 +1,11 @@
 #!/usr/bin/env sh
 
-systemctl --user import-environment DISPLAY &
+RESOURCES="$XDG_CONFIG_HOME/X11/xresources"
+WALL="$HOME/Library/Pictures/wall"
+WEATHER="$HOME/bin/weather"
+STATUS="$HOME/bin/Status"
 
-[ -e "$HOME/Library/Pictures/wall" ] && /usr/bin/feh --no-fehbg --bg-scale "$HOME/Library/Pictures/wall" &
+systemctl --user import-environment DISPLAY &
 
 dunst &
 
@@ -10,10 +13,15 @@ pgrep mpd > /dev/null || mpd &
 
 picom -b &
 
-$HOME/bin/weather &
+[ -f "$RESOURCES" ] && xrdb -merge "$RESOURCES" &
 
-$HOME/bin/Status &
+[ -e "$WALL" ] && /usr/bin/feh --no-fehbg --bg-scale "$WALL" &
+
+[ -e "$WEATHER" ] && $WEATHER &
+
+[ -e "$STATUS" ] && $STATUS &
 
 while :; do
 	ssh-agent dwm
 done
+

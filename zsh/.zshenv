@@ -8,7 +8,7 @@ export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 # Env
-export TERM="st"
+# export TERM="st"
 export SHELL="zsh"
 export EDITOR="vim"
 export BROWSER="firefox"

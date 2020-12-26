@@ -56,7 +56,6 @@ augroup MyColors
 	autocmd!
 	autocmd ColorScheme * call Hilites()
 augroup END
-"autocmd! BufNewFile,BufRead call Hilites()
 
 let g:onedark_hide_endofbuffer=1
 let g:onedark_terminal_italics=1
@@ -93,7 +92,8 @@ set statusline+=%=									"left/right separator
 set statusline+=%{&ff}\ 							"file format
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}]\ 	"file encoding
 set statusline+=%y\ 								"filetype
-set statusline+=❮\ Ln\ %02l\ Col\ %02c				"Line iNum, Cursor Column
+"set statusline+=❮\ Ln\ %02l\ Col\ %02c				"Line iNum, Cursor Column
+set statusline+=❮\ %02l,\ %02c					"Line iNum, Cursor Column
 set statusline+=\ \ %L\ 並%P						"total lines /Percent through file
 
 set statusline+=\ %#warningmsg#

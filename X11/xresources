@@ -1,0 +1,88 @@
+! Scheme : One Dark
+
+#define base00 #282c34
+#define base01 #e06c75
+#define base02 #98c379
+#define base03 #e5c07b
+#define base04 #61afef
+#define base05 #c678dd
+#define base06 #56b6c2
+#define base07 #abb2bf
+#define base08 #4b5263
+#define base09 #e06c75
+#define base0A #a3be86
+#define base0B #e5c07b
+#define base0C #81a1c1
+#define base0D #c678dd
+#define base0E #56b6c2
+#define base0F #d8dee9
+
+#define bg #0c0c0d 
+#define fg #ffffff
+#define sfg #8AB4F8
+#define border #233c43
+
+! Common
+*.foreground: fg
+*.background: bg
+*.cursorColor: fg
+*.font: FiraCode Nerd Font:style=retina,Regular:pixelsize=13:antialias=true:autohint=true
+
+! black/ grey
+*.color0: base00
+*.color8: base08
+
+! red
+*.color1: base01
+*.color9: base09
+
+! green
+*.color2: base02
+*.color10: base0A
+
+! yellow
+*.color3: base03
+*.color11: base0B
+
+! blue
+*.color4: base04
+*.color12: base0C
+
+! magenta
+*.color5: base05
+*.color13: base0D
+
+! cyan
+*.color6: base06
+*.color14: base0E
+
+! white
+*.color7: base07
+*.color15: base0F
+
+! DWM
+dwm.normBG: bg
+dwm.normFG: fg
+dwm.normBorder: border
+dwm.selBG: bg
+dwm.selFG: sfg
+dwm.selBorder: border
+! dwm.borderpx: 0
+! dwm.gappx: 5
+! dwm.snap: 32
+! dwm.showbar: 1
+! dwm.topbar: 1
+! dwm.nmaster: 1 
+! dwm.resizehints: 1
+! dwm.mfact: 0.55
+
+! ST
+! st.minlatency: 8
+! st.maxlatency: 33
+! st.bellvolume: 0
+! st.tabspaces: 4 
+! st.borderpx: 2
+! st.cwscale: 1.0
+! st.chscale: 1.0
+
+

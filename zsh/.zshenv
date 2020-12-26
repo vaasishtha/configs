@@ -16,6 +16,7 @@ export READER="zathura"
 export FILE="ranger"
 
 # Ccache related
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME/ccache/ccache.config"
 export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export USE_CCACHE=1

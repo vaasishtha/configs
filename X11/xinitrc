@@ -13,9 +13,9 @@ pgrep mpd > /dev/null || mpd &
 
 picom -b &
 
-[ -f "$RESOURCES" ] && xrdb -merge "$RESOURCES" &
+[ -f "$RESOURCES" ] && xrdb -merge "$RESOURCES"
 
-[ -e "$WALL" ] && /usr/bin/feh --no-fehbg --bg-scale "$WALL" &
+[ -e "$WALL" ] && /usr/bin/feh --no-fehbg --bg-scale "$WALL" 
 
 [ -e "$WEATHER" ] && $WEATHER &
 

@@ -168,7 +168,7 @@ formats = {
     pubmsg_channel = "{pubmsgnick $3 {pubnick $[-9]0}{msgchannel $1}}$2";
     set_item = "$0 %c=%N $1";
     line_start_irssi = "{line_start}     %C└%c─ ";
-    nick_changed = "%C─%c─%C {channick $[-9]0}%N is now known as {nick $1}";
+    nick_changed = "%K─%K─%K {channick $[-9]0}%K is now known as {nick $1}";
     your_nick_changed = "%C─%c─%N You're now known as {nick $1}";
     daychange = "%C─%c─%N Day changed to %%d %%b %%Y";
   };

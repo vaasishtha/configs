@@ -1,9 +1,8 @@
 call plug#begin('~/.vim/plugged')
-	Plug 'joshdick/onedark.vim'
 	Plug 'sheerun/vim-polyglot'
 	Plug 'ap/vim-css-color'
-	Plug 'scrooloose/nerdtree'
 	Plug 'vim-syntastic/syntastic'
+	Plug 'sonph/onehalf', { 'rtp': 'vim' }
 call plug#end()            
 
 filetype plugin indent on
@@ -11,6 +10,7 @@ syntax on
 set autoread
 set clipboard=unnamedplus
 set mouse=a
+set mousehide
 set noshowmode
 set wildmenu
 "set ruler rulerformat=%15(%c%V\ %p%%%)
@@ -38,18 +38,22 @@ set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
 runtime macros/matchit.vim
 
 "ColorScheme 
-let &t_8f = "[38;2;%lu;%lu;%lum"
-let &t_8b = "[48;2;%lu;%lu;%lum"
-set termguicolors
 function! Hilites() abort
-	highlight StatusLine cterm=bold ctermfg=145 ctermbg=236
-	highlight CursorLine term=underline ctermbg=236
-	highlight CursorLineNr cterm=bold ctermbg=236
-	highlight ColorColumn term=reverse ctermbg=236
-	highlight Search term=reverse ctermfg=235 ctermbg=180
-	highlight IncSearch term=reverse ctermfg=180 ctermbg=59
-	highlight SpellBad term=reverse cterm=underline ctermfg=204
-	highlight EndOfBuffer ctermfg=235
+	if exists('+termguicolors')
+		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+		set termguicolors
+	endif
+
+	highlight StatusLineAcc	ctermfg=8	ctermbg=NONE term=underline
+	highlight StatusLineTxt	ctermfg=7	ctermbg=8	 term=underline
+	highlight CursorLine	ctermbg=236 term=underline
+	highlight CursorLineNr	ctermbg=236 cterm=bold
+	highlight ColorColumn	ctermbg=236 term=reverse
+	highlight Search		ctermbg=180 ctermfg=235 term=reverse
+	highlight IncSearch		ctermbg=59  ctermfg=180 term=reverse
+	highlight SpellBad		ctermfg=204 term=reverse cterm=underline
+	highlight EndOfBuffer	ctermfg=235
 endfunction
 
 augroup MyColors
@@ -57,20 +61,17 @@ augroup MyColors
 	autocmd ColorScheme * call Hilites()
 augroup END
 
-let g:onedark_hide_endofbuffer=1
-let g:onedark_terminal_italics=1
-
-colorscheme onedark
+colorscheme onehalfdark
 
 let g:currentmode={
-			\'n'  : 'Normal ',
-			\'v'  : 'Visual ',
-			\'V'  : 'V·Line ',
-			\'' : 'V·Block ',
-			\'i'  : 'Insert ',
-			\'R'  : 'Replace ',
-			\'Rv' : 'V·Replace ',
-			\'c'  : 'Command ',
+			\'n'  : 'Normal',
+			\'v'  : 'Visual',
+			\'V'  : 'V·Line',
+			\'' : 'V·Block',
+			\'i'  : 'Insert',
+			\'R'  : 'Replace',
+			\'Rv' : 'V·Replace',
+			\'c'  : 'Command',
 			\}
 
 let g:syntastic_always_populate_loc_list = 1
@@ -78,53 +79,106 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+function! RedrawModeColors(mode)
+  " Normal mode
+  if a:mode == 'n'
+    highlight StatusLineModAcc ctermbg=NONE ctermfg=4 
+    highlight StatusLineModTxt ctermbg=4	ctermfg=15
+  " Insert mode
+  elseif a:mode == 'i'
+    highlight StatusLineModAcc ctermbg=NONE ctermfg=6
+    highlight StatusLineModTxt ctermbg=6	ctermfg=15
+  " Replace mode
+  elseif a:mode == 'R'
+    highlight StatusLineModAcc ctermbg=NONE ctermfg=1
+    highlight StatusLineModTxt ctermbg=1	ctermfg=15
+  " Visual mode
+  elseif a:mode == 'v' || a:mode == 'V' || a:mode == '^V'
+    highlight StatusLineModAcc ctermbg=NONE	ctermfg=2
+    highlight StatusLineModTxt ctermbg=2	ctermfg=7
+  " Command mode
+  elseif a:mode == 'c'
+    highlight StatusLineModAcc ctermbg=NONE ctermfg=8
+    highlight StatusLineModTxt ctermbg=8	ctermfg=7
+  " Terminal mode
+  elseif a:mode == 't'
+    highlight StatusLineModAcc ctermbg=NONE ctermfg=7
+    highlight StatusLineModTxt ctermbg=7	ctermfg=15
+  endif
+  " Return empty string so as not to display anything in the statusline
+  return ''
+endfunction
 
-set statusline=
-set statusline+=\ %02n\ ❯
-set statusline+=\ %{toupper(g:currentmode[mode()])}❯
-set statusline+=\ %t								"tail of the filename
-set statusline+=%{&modified?'\ [+]':''}\ 			"modified flag
-set statusline+=%{&readonly?'\ [RO]\ ':''}			"read only flag
+set statusline=%{RedrawModeColors(mode())}
+set statusline+=%#StatusLineAcc#
+set statusline+=\%#StatusLineTxt#%02n
+set statusline+=%#StatusLineAcc#
+set statusline+=%#StatusLineModAcc#
+set statusline+=%#StatusLineModTxt#%{toupper(g:currentmode[mode()])}
+set statusline+=%#StatusLineModAcc#
+set statusline+=%#StatusLineAcc#
+set statusline+=%#StatusLineTxt#%t								"tail of the filename
+set statusline+=%{&modified?'\ [+]':''}							"modified flag
+set statusline+=%{&readonly?'\ [RO]':''}						"read only flag
+set statusline+=%#StatusLineAcc#
 set statusline+=%<
-set statusline+=%=									"left/right separator
-set statusline+=%{&ff}\ 							"file format
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}]\ 	"file encoding
-set statusline+=%y\ 								"filetype
-"set statusline+=❮\ Ln\ %02l\ Col\ %02c				"Line iNum, Cursor Column
-set statusline+=❮\ %02l,\ %02c					"Line iNum, Cursor Column
-set statusline+=\ \ %L\ 並%P						"total lines /Percent through file
+set statusline+=%=												"left/right separator
+set statusline+=%#StatusLineAcc#
+set statusline+=%#StatusLineTxt#%{&ff}							"file format
+set statusline+=%#StatusLineAcc#
+set statusline+=%#StatusLineTxt#%{strlen(&fenc)?&fenc:'none'}	"file encoding
+set statusline+=%#StatusLineAcc#
+" set statusline+=%#StatusLineTxt#%y								"filetype
+" set statusline+=%#StatusLineAcc#
+set statusline+=%#StatusLineTxt#%02l,\ %02c						"Line iNum, Cursor Column
+set statusline+=%#StatusLineAcc#
+set statusline+=%#StatusLineTxt#\ %L\ 並%P						"total lines /Percent through file
+set statusline+=%#StatusLineAcc#
 
 set statusline+=\ %#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-"Mappings
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_keepdir=0		" current and browsing dir synced
+let g:netrw_winsize=20		" split size
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+" Mappings
 let mapleader=" "
 
-nnoremap <S-n> :NERDTreeToggle<CR>
-nnoremap <S-s> :SyntasticToggleMode<CR>
-
+nnoremap <S-n> :Lex<cr>
+nnoremap <S-s> :SyntasticToggleMode<cr>
+nnoremap <C-s> :w<cr>
+inoremap <C-s> <Esc>:w<cr>
+noremap <C-a> <home>
+noremap <C-d> <end>
 nnoremap <C-b> :g//#<Left><Left>
-nnoremap <F10> :set invpaste<CR>
-nnoremap <Leader><Space> :let @/=''<CR>
-nnoremap <Leader><left> :vertical resize -5<CR>
-nnoremap <Leader><right> :vertical resize +5<CR>
+map <F2> :mksession! ~/.cache/.vim_session<cr>
+map <F3> :source ~/.cache/.vim_session<cr> <home>
+nnoremap <F10> :set invpaste<cr>
+nnoremap <Leader><Space> :let @/=''<cr>
+nnoremap <Leader><left> :vertical resize -5<cr>
+nnoremap <Leader><right> :vertical resize +5<cr>
 " Split Navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 " Tab Navigation
-nnoremap <S-l> :tabprevious<CR>
-nnoremap <S-h> :tabnext<CR>
+nnoremap <S-l> :tabprevious<cr>
+nnoremap <S-h> :tabnext<cr>
 " Buffer Navigation
-nnoremap <Leader>l :bnext<CR>
-nnoremap <Leader>h :bprev<CR>
+nnoremap <Leader>l :bnext<cr>
+nnoremap <Leader>h :bprev<cr>
 " Move Lines
-nnoremap <S-k> :move .-2<CR>
-nnoremap <S-j> :move .+1<CR>
-vnoremap <S-k> :move '<-2<CR>gv=gv
-vnoremap <S-j> :move '>+1<CR>gv=gv
+nnoremap <S-k> :move .-2<cr>
+nnoremap <S-j> :move .+1<cr>
+vnoremap <S-k> :move '<-2<cr>gv=gv
+vnoremap <S-j> :move '>+1<cr>gv=gv
 

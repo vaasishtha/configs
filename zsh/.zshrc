@@ -71,6 +71,7 @@ alias gs="git status"
 alias gg="git log --graph --oneline --decorate"
 alias bat="bat -A --color always"
 alias reflect="sudo reflector --country 'India' --latest 10 --age 24 --sort rate --save /etc/pacman.d/mirrorlist"
+alias irssi="irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi"
 
 # Prompt Theming
 # Options: ➜ √ λ ✔ ✘ ❯ ❮

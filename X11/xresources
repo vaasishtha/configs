@@ -1,27 +1,26 @@
-! Scheme : One Dark
+! Scheme : Term
 
-#define base00 #282c34
-#define base01 #e06c75
-#define base02 #98c379
-#define base03 #e5c07b
-#define base04 #61afef
-#define base05 #c678dd
-#define base06 #56b6c2
-#define base07 #abb2bf
-#define base08 #4b5263
-#define base09 #e06c75
-#define base0A #a3be86
-#define base0B #e5c07b
-#define base0C #81a1c1
-#define base0D #c678dd
-#define base0E #56b6c2
-#define base0F #d8dee9
+#define base00 #171421
+#define base01 #c01c28
+#define base02 #26a269
+#define base03 #a2734c
+#define base04 #12488b
+#define base05 #a347ba
+#define base06 #2aa1b3
+#define base07 #d0cfcc
+#define base08 #5e5c64
+#define base09 #f66151
+#define base0A #33d17a
+#define base0B #e9ad0c
+#define base0C #2a7bde
+#define base0D #c061cb
+#define base0E #33c7de
+#define base0F #ffffff
 
-! #define bg #0c0c0d 
-#define bg #242424
-#define fg #fefefe
-! #define sfg #8AB4F8
-#define sbg #3c4657
+#define bg #000000 
+#define Ubg #0c0c0d 
+#define fg #ffffff
+#define sbg #3d5a60
 #define sfg #fefefe
 #define border #233c43
 
@@ -80,6 +79,9 @@ dwm.selBorder: border
 ! dwm.mfact: 0.55
 
 ! ST
+st.background: bg
+st.foreground: fg
+st.bgUnfocused: Ubg
 ! st.minlatency: 8
 ! st.maxlatency: 33
 ! st.bellvolume: 0
@@ -87,5 +89,4 @@ dwm.selBorder: border
 ! st.borderpx: 2
 ! st.cwscale: 1.0
 ! st.chscale: 1.0
-
 

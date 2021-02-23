@@ -30,7 +30,7 @@ export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 
-[ -d "$XDG_DATA_HOME" ] && export PATH="${PATH}:$XDG_DATA_HOME/bin"
+[ -d "$XDG_DATA_HOME/bin" ] && export PATH="${PATH}:$XDG_DATA_HOME/bin"
 [ -d "$HOME/androidBuilds/platform-tools" ] && export PATH="${PATH}:$HOME/androidBuilds/platform-tools"
 [ -d "$HOME/androidBuilds/bin" ] && export PATH="${PATH}:$HOME/androidBuilds/bin"
 

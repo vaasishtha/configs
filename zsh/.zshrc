@@ -53,7 +53,7 @@ autoload -Uz colors && colors
 # ALIASES
 
 alias bash="bash --init-file $XDG_CONFIG_HOME/bash/.bashrc"
-alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc"
+alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc --$(which Xwayland)"
 alias kbc="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\\n\", \$5, \$8 }'"
 alias ls="ls -Fh --color=auto --group-directories-first"
 alias lsa="ls -a"
@@ -70,8 +70,13 @@ alias free="free -h"
 alias gs="git status"
 alias gg="git log --graph --oneline --decorate"
 alias bat="bat -A --color always"
+alias vim="nvim"
 alias reflect="sudo reflector --country 'India' --latest 10 --age 24 --sort rate --save /etc/pacman.d/mirrorlist"
 alias irssi="irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi"
+alias generate='rm -rf dst && mkdir dst && ssg5 src dst "Rakshith Maiya" "https://rakshithmaiya.com"'
+alias deploy="rsync -uvrP --delete-after dst/ root@139.59.87.182:/var/www/site"
+alias lsallpkgs="pacman -Slq | fzf --preview 'pacman -Si {}'"
+alias lspkgs="pacman -Qq | fzf --preview 'pacman -Qil {}' --bind 'enter:execute(pacman -Qil {} | less)'"
 
 # Prompt Theming
 # Options: ➜ √ λ ✔ ✘ ❯ ❮

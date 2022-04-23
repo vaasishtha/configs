@@ -6,7 +6,7 @@ show-keymap-hint			false
 notify-always				yes
 notify-format				"Newsboat\n%d New articles\n[%n unread articles, %f unread feeds]"
 notify-program				dunstify 
-reload-threads				4
+reload-threads				100
 
 # Scheme
 color background			color236	default
@@ -26,4 +26,8 @@ highlight article "\\[image\\ [0-9]+\\]"		color10 default bold
 highlight feedlist "^─.*$"						color6 color236 bold
 highlight feedlist ".*(0/0))"					cyan default
 highlight all "---.*---"						cyan default bold
+
+bind-key j down
+bind-key k up
+bind-key o open-in-browser-and-mark-read
 
